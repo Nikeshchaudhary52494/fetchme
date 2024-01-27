@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fetchme/firebase_options.dart';
 import 'package:fetchme/models/cart_model.dart';
 import 'package:fetchme/providers/product_data_provider.dart';
+import 'package:fetchme/providers/theme_provider.dart';
 import 'package:fetchme/screens/auth_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,22 +20,29 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CartModel()),
         ChangeNotifierProvider(create: (_) => ProductDataProvider()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+        ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
         ),
-        home: const AuthScreen(),
+      ],
+      child: Builder(
+        builder: (context) {
+          ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: themeProvider.getTheme,
+            home: const AuthScreen(),
+          );
+        },
       ),
     );
   }

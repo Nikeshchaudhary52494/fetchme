@@ -70,11 +70,10 @@ class _AddProductFormState extends State<AddProductForm> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    // Form is valid, add the product
                     Product product = Product(
                       name: _nameController.text,
                       price: double.parse(_priceController.text),
@@ -83,11 +82,18 @@ class _AddProductFormState extends State<AddProductForm> {
                     );
 
                     await _firestoreServices.addProduct(product);
-
-                    // Close the form
                     Navigator.pop(context);
                   }
                 },
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 child: const Text('Add Product'),
               ),
             ],

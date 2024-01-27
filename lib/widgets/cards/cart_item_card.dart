@@ -18,7 +18,7 @@ class CartItemCard extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: Theme.of(context).colorScheme.onBackground,
           borderRadius: BorderRadius.circular(10),
         ),
         child: ListTile(

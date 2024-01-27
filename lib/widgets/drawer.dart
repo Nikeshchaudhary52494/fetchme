@@ -1,6 +1,8 @@
+import 'package:fetchme/providers/theme_provider.dart';
 import 'package:fetchme/screens/add_product_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -12,7 +14,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.background,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -21,18 +23,24 @@ class MyDrawer extends StatelessWidget {
               DrawerHeader(
                 child: Image.asset(
                   'lib/images/fetchme.png',
-                  color: const Color.fromARGB(255, 18, 181, 135),
+                  color: Theme.of(context).colorScheme.primary,
                   width: 300,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 24),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.light_mode,
-                  ),
-                  title: Text(
-                    "Theme",
+              GestureDetector(
+                onTap: () {
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .changeTheme();
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 24),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.light_mode,
+                    ),
+                    title: Text(
+                      "Theme",
+                    ),
                   ),
                 ),
               ),

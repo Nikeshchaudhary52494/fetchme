@@ -13,11 +13,11 @@ class HomeScreen2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 18, 181, 135),
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: Image.asset(
           'lib/images/fetchme.png',
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.primary,
         ),
         actions: <Widget>[
           IconButton(
