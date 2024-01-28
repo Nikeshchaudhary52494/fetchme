@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-void showImagePicker(BuildContext context) {
+typedef ImageSelectedCallback = void Function(File image);
+
+void showImagePicker(
+    BuildContext context, ImageSelectedCallback onImageSelected) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
@@ -32,7 +35,7 @@ void showImagePicker(BuildContext context) {
                 final image =
                     await ImagePicker().pickImage(source: ImageSource.camera);
                 if (image != null) {
-                  _processImage(File(image.path));
+                  onImageSelected(File(image.path));
                 }
               },
             ),
@@ -50,8 +53,7 @@ void showImagePicker(BuildContext context) {
                 final image =
                     await ImagePicker().pickImage(source: ImageSource.gallery);
                 if (image != null) {
-                  // Process the image from the gallery
-                  _processImage(File(image.path));
+                  onImageSelected(File(image.path));
                 }
               },
             ),
@@ -60,8 +62,4 @@ void showImagePicker(BuildContext context) {
       );
     },
   );
-}
-
-void _processImage(File image) {
-  print('Selected image: ${image.path}');
 }

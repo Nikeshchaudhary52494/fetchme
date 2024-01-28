@@ -66,7 +66,6 @@ class _AddProductFormState extends State<AddProductForm> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter an image URL';
                   }
-                  // You can add more validation for URL format if needed
                   return null;
                 },
               ),

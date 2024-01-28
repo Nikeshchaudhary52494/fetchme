@@ -26,11 +26,14 @@ class ProductCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+          Container(
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            width: 300,
             child: Image.network(
               imagePath,
-              width: 300,
+              height: 200,
             ),
           ),
           Padding(
@@ -39,6 +42,8 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       name,

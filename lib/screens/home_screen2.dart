@@ -14,7 +14,6 @@ class HomeScreen2 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
-        backgroundColor: Theme.of(context).colorScheme.background,
         title: Image.asset(
           'lib/images/fetchme.png',
           color: Theme.of(context).colorScheme.primary,
