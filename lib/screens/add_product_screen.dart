@@ -1,6 +1,8 @@
+import 'package:fetchme/providers/product_data_provider.dart';
 import 'package:fetchme/services/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fetchme/models/product_model.dart';
+import 'package:provider/provider.dart';
 
 class AddProductForm extends StatefulWidget {
   @override
@@ -79,8 +81,14 @@ class _AddProductFormState extends State<AddProductForm> {
                       category: _categoryController.text,
                       imageUrl: _imageUrlController.text,
                     );
-
+                    final productDataProvider =
+                        Provider.of<ProductDataProvider>(
+                      context,
+                      listen: false,
+                    );
                     await _firestoreServices.addProduct(product);
+                    await productDataProvider.refreshData();
+
                     Navigator.pop(context);
                   }
                 },

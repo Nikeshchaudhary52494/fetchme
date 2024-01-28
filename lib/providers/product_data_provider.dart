@@ -20,6 +20,10 @@ class ProductDataProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> refreshData() async {
+    await fetchData();
+  }
+
   void updateSearchResults(List<Product> searchResults) {
     _searchResults = searchResults;
     notifyListeners();

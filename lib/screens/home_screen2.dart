@@ -1,3 +1,4 @@
+import 'package:fetchme/providers/theme_provider.dart';
 import 'package:fetchme/screens/cart_screen.dart';
 import 'package:fetchme/widgets/drawer.dart';
 import 'package:fetchme/widgets/product_list.dart';
@@ -13,10 +14,14 @@ class HomeScreen2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+        iconTheme: Theme.of(context).brightness == Brightness.light
+            ? const IconThemeData(color: Colors.white)
+            : IconThemeData(color: Theme.of(context).colorScheme.primary),
         title: Image.asset(
           'lib/images/fetchme.png',
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).brightness == Brightness.light
+              ? Colors.white
+              : Theme.of(context).colorScheme.primary,
         ),
         actions: <Widget>[
           IconButton(

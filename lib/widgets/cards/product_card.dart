@@ -31,9 +31,12 @@ class ProductCard extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             width: 300,
-            child: Image.network(
-              imagePath,
-              height: 200,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                imagePath,
+                height: 200,
+              ),
             ),
           ),
           Padding(

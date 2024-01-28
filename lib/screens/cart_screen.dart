@@ -20,6 +20,11 @@ class _CartScreenState extends State<CartScreen> {
       ),
       body: Consumer<CartModel>(
         builder: (context, cart, child) {
+          double totalPrice = 0.0;
+          for (Product product in cart.cartItems) {
+            totalPrice += product.price;
+          }
+
           return Column(
             children: [
               Expanded(
@@ -39,34 +44,41 @@ class _CartScreenState extends State<CartScreen> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(5)),
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
+                    Column(
                       children: [
-                        Text(
+                        const Text(
                           "Total price:",
                           style: TextStyle(fontSize: 20),
                         ),
                         Text(
-                          "\$100",
-                          style: TextStyle(
-                              color: Colors.orange,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
+                          "\$ $totalPrice",
+                          style: const TextStyle(
+                            color: Colors.orange,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )
                       ],
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        // Add your payment logic here
+                      },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 20, horizontal: 30),
+                          vertical: 20,
+                          horizontal: 30,
+                        ),
                         decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(5)),
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                         child: const Text(
                           "Pay Now",
                           style: TextStyle(color: Colors.white),
